@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  interest: 9.99
+  principal: 9.99
+  paid_installments: 1
+  pending_installments: 1
+  duration: 1
+  status: MyString
+  total_amount_to_pay: 9.99
+  amount_paid: 9.99
+
+two:
+  client: two
+  interest: 9.99
+  principal: 9.99
+  paid_installments: 1
+  pending_installments: 1
+  duration: 1
+  status: MyString
+  total_amount_to_pay: 9.99
+  amount_paid: 9.99

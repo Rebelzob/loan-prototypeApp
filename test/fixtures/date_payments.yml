@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_id: one
+  collection_id: 1
+  payment_due_date: 2024-11-08 18:10:17
+  loan_start_date: 2024-11-08 18:10:17
+  final_payment_date: 2024-11-08 18:10:17
+
+two:
+  client_id: two
+  collection_id: 1
+  payment_due_date: 2024-11-08 18:10:17
+  loan_start_date: 2024-11-08 18:10:17
+  final_payment_date: 2024-11-08 18:10:17
