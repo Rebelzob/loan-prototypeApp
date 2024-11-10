@@ -1,5 +1,9 @@
 <% content_for :title, "Users" %>
 
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" 
+     data-controller="search"
+     data-controller="connect">
+
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <% if notice %>
     <div class="bg-green-50 text-green-600 p-4 rounded-lg mb-6">
@@ -14,30 +18,24 @@
   </div>
 
   <div class="mb-8">
-    <%= form_with(url: users_path, method: :get, class: "flex gap-4") do |f| %>
-      <%= f.text_field :query, 
-          value: @query,
-          placeholder: "Buscar por Nombre o Apellido...",
-          class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
-      <%= f.submit "Buscar", 
-          class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" %>
-    <% end %>
+    <div class="relative rounded-md shadow-sm">
+      <input type="text" 
+             data-search-target="input"
+             data-action="input->search#search"
+             placeholder="Buscar por nombre o apellido..."
+             class="block w-full rounded-md border-gray-300 pl-4 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+      <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div id="users" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    <% @users.each do |user| %>
-      <div class="bg-white overflow-hidden shadow rounded-lg">
-        <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg font-medium text-gray-900">
-            <%= "#{user.name} #{user.last_name}" %>
-          </h3>
-          <div class="mt-4">
-            <%= link_to "Ver Detalles", user_path(user), 
-                class: "text-sm font-medium text-indigo-600 hover:text-indigo-500" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div id="users" 
+       data-search-target="list"
+       class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <%= render partial: "user_card", collection: @users, as: :user %>
   </div>
 
   <% if @users.empty? %>
