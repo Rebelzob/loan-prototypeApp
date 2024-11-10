@@ -8,8 +8,8 @@
   <% end %>
 
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-3xl font-bold text-gray-900">Users</h1>
-    <%= link_to "New user", new_user_path, 
+    <h1 class="text-3xl font-bold text-gray-900">Clientes</h1>
+    <%= link_to "Nuevo Cliente", new_user_path, 
         class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" %>
   </div>
 
@@ -17,9 +17,9 @@
     <%= form_with(url: users_path, method: :get, class: "flex gap-4") do |f| %>
       <%= f.text_field :query, 
           value: @query,
-          placeholder: "Search by name or last name...",
+          placeholder: "Buscar por Nombre o Apellido...",
           class: "block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
-      <%= f.submit "Search", 
+      <%= f.submit "Buscar", 
           class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700" %>
     <% end %>
   </div>
@@ -32,7 +32,7 @@
             <%= "#{user.name} #{user.last_name}" %>
           </h3>
           <div class="mt-4">
-            <%= link_to "View details", user_path(user), 
+            <%= link_to "Ver Detalles", user_path(user), 
                 class: "text-sm font-medium text-indigo-600 hover:text-indigo-500" %>
           </div>
         </div>
