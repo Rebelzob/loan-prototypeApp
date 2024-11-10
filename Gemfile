@@ -21,10 +21,10 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # activeadmin is a popular admin interface for Rails [https://activeadmin.info]
-gem 'activeadmin'
+gem "activeadmin"
 
 # Use Devise for user authentication
-gem 'devise'
+gem "devise"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 3.0.0"
+
+gem "faker"
