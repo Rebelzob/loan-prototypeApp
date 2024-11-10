@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="search"
 export default class extends Controller {
   static targets = ["input", "list"]
-  
+
   connect() {
     console.log("Search controller connected!")
   }
@@ -22,6 +22,9 @@ export default class extends Controller {
     .then(response => response.text())
     .then(html => {
       this.listTarget.innerHTML = html
+    })
+    .catch(error => {
+      console.error("Search failed:", error)
     })
   }
 }
