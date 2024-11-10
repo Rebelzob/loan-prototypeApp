@@ -9,6 +9,16 @@ class UsersController < ApplicationController
     else
       User.all
     end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream { 
+        render partial: "users/user_card", 
+               collection: @users, 
+               as: :user,
+               formats: [:html]
+      }
+    end
   end
 
   # GET /users/1 or /users/1.json
