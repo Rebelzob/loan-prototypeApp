@@ -3,7 +3,12 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @query = params[:query]
+    @users = if @query.present?
+      User.where("name ILIKE ? OR last_name ILIKE ?", "%#{@query}%", "%#{@query}%")
+    else
+      User.all
+    end
   end
 
   # GET /users/1 or /users/1.json
@@ -21,7 +26,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(transform_user_params(user_params))
 
     respond_to do |format|
       if @user.save
@@ -37,7 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(transform_user_params(user_params))
         format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -49,11 +54,18 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+    begin
+      @user.destroy!
+  
+      respond_to do |format|
+        format.html { redirect_to users_path, status: :see_other, notice: "Cliente borrado satisfactoriamente!" }
+        format.json { head :no_content }
+      end
+    rescue => e
+      respond_to do |format|
+        format.html { redirect_to @user, alert:"No se pudo borrar el cliente de la base de datos."}
+        format.json { render json: { error: e.message }, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -65,6 +77,17 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(
+        :name,
+        :last_name,
+        :email,
+        :phone,
+        :address,
+        :comments
+        )
+    end
+  
+    def transform_user_params(params)
+      params.transform_values { |v| v.is_a?(String) ? v.capitalize : v }
     end
 end
