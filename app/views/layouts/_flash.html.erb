@@ -1,0 +1,7 @@
+<% if flash.any? %>
+  <div class="p-4 mb-6 rounded-lg bg-green-50">
+    <% flash.each do |type, message| %>
+      <p class="text-green-600"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>

@@ -64,25 +64,19 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    begin
-      @user.destroy!
+    @user.destroy!
   
-      respond_to do |format|
-        format.html { redirect_to users_path, status: :see_other, notice: "Cliente borrado satisfactoriamente!" }
-        format.json { head :no_content }
-      end
-    rescue => e
-      respond_to do |format|
-        format.html { redirect_to @user, alert:"No se pudo borrar el cliente de la base de datos."}
-        format.json { render json: { error: e.message }, status: :unprocessable_entity}
-      end
+    respond_to do |format|
+      format.html { redirect_to users_path, notice: "Cliente borrado satisfactoriamente!", status: :see_other }
+      format.turbo_stream { redirect_to users_path, status: :see_other, location: users_path }
+      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params.expect(:id))
+      @user = User.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
