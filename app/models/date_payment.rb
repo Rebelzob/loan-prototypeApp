@@ -1,3 +1,3 @@
 class DatePayment < ApplicationRecord
-  belongs_to :client_id
+  belongs_to :client, foreign_key: "user_id", class_name: "User"
 end
