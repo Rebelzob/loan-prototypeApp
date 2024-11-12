@@ -74,24 +74,24 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(
-        :name,
-        :last_name,
-        :email,
-        :phone,
-        :address,
-        :comments
-        )
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :last_name,
+      :email,
+      :phone,
+      :address,
+      :comments
+      )
+  end
 
-    def transform_user_params(params)
-      params.transform_values { |v| v.is_a?(String) ? v.capitalize : v }
-    end
+  def transform_user_params(params)
+    params.transform_values { |v| v.is_a?(String) ? v.capitalize : v }
+  end
 end
