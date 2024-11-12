@@ -12,11 +12,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.turbo_stream { 
-        render partial: "users/user_card", 
-               collection: @users, 
+      format.turbo_stream {
+        render partial: "users/user_card",
+               collection: @users,
                as: :user,
-               formats: [:html]
+               formats: [ :html ]
       }
     end
   end
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy!
-  
+
     respond_to do |format|
       format.html { redirect_to users_path, notice: "Cliente borrado satisfactoriamente!", status: :see_other }
       format.turbo_stream { redirect_to users_path, status: :see_other, location: users_path }
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
         :comments
         )
     end
-  
+
     def transform_user_params(params)
       params.transform_values { |v| v.is_a?(String) ? v.capitalize : v }
     end
