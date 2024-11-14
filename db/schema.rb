@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_08_181920) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_13_195737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,7 +22,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_08_181920) do
     t.datetime "final_payment_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "loan_id", null: false
     t.index ["client_id"], name: "index_date_payments_on_client_id"
+    t.index ["loan_id"], name: "index_date_payments_on_loan_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_08_181920) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "date_payments", "loans"
   add_foreign_key "date_payments", "users", column: "client_id"
   add_foreign_key "loans", "users", column: "client_id"
   add_foreign_key "payments", "loans"
