@@ -48,7 +48,7 @@ class DatePaymentsControllerTest < ActionDispatch::IntegrationTest
     } }
     assert_redirected_to date_payment_url(@date_payment)
     @date_payment.reload
-    assert_equal "2024-12-15", @date_payment.payment_due_date.to_s
+    assert_equal "2024-12-15", @date_payment.payment_due_date.to_date.to_s
   end
 
   test "should destroy date_payment" do
