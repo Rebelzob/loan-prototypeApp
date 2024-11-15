@@ -18,7 +18,7 @@ class LoansControllerTest < ActionDispatch::IntegrationTest
 
   test "should create loan" do
     assert_difference("Loan.count") do
-      post loans_url, params: { loan: {user_id: @user.id, interest: 5.5, principal: 1000, duration: 12, status: "active", total_amount_to_pay: 1100, amount_paid: 0, pending_installments:10} }
+      post loans_url, params: { loan: { user_id: @user.id, interest: 5.5, principal: 1000, duration: 12, status: "active", total_amount_to_pay: 1100, amount_paid: 0, pending_installments: 10 } }
     end
 
     assert_redirected_to loan_url(Loan.last)

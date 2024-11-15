@@ -19,13 +19,13 @@ class DatePaymentsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create date_payment" do
     assert_difference("DatePayment.count") do
-      post date_payments_url, params: { date_payment: { 
-        user_id: @user.id, 
-        loan_id: @loan.id, 
-        collection_id: 1, 
-        payment_due_date: "2024-12-01", 
-        loan_start_date: "2024-11-01", 
-        final_payment_date: "2025-11-01" 
+      post date_payments_url, params: { date_payment: {
+        user_id: @user.id,
+        loan_id: @loan.id,
+        collection_id: 1,
+        payment_due_date: "2024-12-01",
+        loan_start_date: "2024-11-01",
+        final_payment_date: "2025-11-01"
       } }
     end
 
@@ -43,8 +43,8 @@ class DatePaymentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update date_payment" do
-    patch date_payment_url(@date_payment), params: { date_payment: { 
-      payment_due_date: "2024-12-15" 
+    patch date_payment_url(@date_payment), params: { date_payment: {
+      payment_due_date: "2024-12-15"
     } }
     assert_redirected_to date_payment_url(@date_payment)
     @date_payment.reload
