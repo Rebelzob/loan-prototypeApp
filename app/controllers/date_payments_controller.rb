@@ -60,11 +60,18 @@ class DatePaymentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_date_payment
-      @date_payment = DatePayment.find(params.expect(:id))
+      @date_payment = DatePayment.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def date_payment_params
-      params.fetch(:date_payment, {})
+      params.require(:date_payment).permit(
+      :user_id,
+      :loan_id,
+      :collection_id,
+      :payment_due_date,
+      :loan_start_date,
+      :final_payment_date
+    )
     end
 end
