@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_13_195737) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_15_000708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "date_payments", force: :cascade do |t|
-    t.bigint "client_id", null: false
+    t.bigint "user_id", null: false
     t.integer "collection_id"
     t.datetime "payment_due_date"
     t.datetime "loan_start_date"
@@ -23,12 +23,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_13_195737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "loan_id", null: false
-    t.index ["client_id"], name: "index_date_payments_on_client_id"
     t.index ["loan_id"], name: "index_date_payments_on_loan_id"
+    t.index ["user_id"], name: "index_date_payments_on_user_id"
   end
 
   create_table "loans", force: :cascade do |t|
-    t.bigint "client_id", null: false
+    t.bigint "user_id", null: false
     t.decimal "interest"
     t.decimal "principal"
     t.integer "paid_installments"
@@ -39,7 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_13_195737) do
     t.decimal "amount_paid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_loans_on_client_id"
+    t.index ["user_id"], name: "index_loans_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -68,8 +68,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_13_195737) do
   end
 
   add_foreign_key "date_payments", "loans"
-  add_foreign_key "date_payments", "users", column: "client_id"
-  add_foreign_key "loans", "users", column: "client_id"
+  add_foreign_key "date_payments", "users"
+  add_foreign_key "loans", "users"
   add_foreign_key "payments", "loans"
   add_foreign_key "payments", "users"
 end
