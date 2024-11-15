@@ -1,0 +1,17 @@
+<%= form_with(model: date_payment) do |form| %>
+  <% if date_payment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(date_payment.errors.count, "error") %> prohibited this date_payment from being saved:</h2>
+
+      <ul>
+        <% date_payment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

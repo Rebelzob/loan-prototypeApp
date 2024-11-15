@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Date payments" %>
+
+<h1>Date payments</h1>
+
+<div id="date_payments">
+  <% @date_payments.each do |date_payment| %>
+    <%= render date_payment %>
+    <p>
+      <%= link_to "Show this date payment", date_payment %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New date payment", new_date_payment_path %>

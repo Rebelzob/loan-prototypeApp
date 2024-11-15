@@ -1,0 +1,11 @@
+<% content_for :title, "Nuevo Cliente" %>
+
+<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+  <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Nuevo Cliente</h1>
+
+  <%= render "form", user: @user %>
+
+  <div class="mt-6">
+    <%= link_to "Vuelve a Clientes", users_path, class: "text-blue-600 hover:text-blue-800 font-semibold" %>
+  </div>
+</div>

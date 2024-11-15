@@ -1,0 +1,12 @@
+<% content_for :title, "Editing date payment" %>
+
+<h1>Editing date payment</h1>
+
+<%= render "form", date_payment: @date_payment %>
+
+<br>
+
+<div>
+  <%= link_to "Show this date payment", @date_payment %> |
+  <%= link_to "Back to date payments", date_payments_path %>
+</div>

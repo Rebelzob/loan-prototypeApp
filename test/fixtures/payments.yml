@@ -1,0 +1,17 @@
+one:
+  loan: one
+  user: one
+  payment_date: "2024-11-08 18:11:21"
+  amount: 500.00
+  interest_paid: 50.00
+  principal_paid: 450.00
+  status: "completed"
+
+two:
+  loan: two
+  user: two
+  payment_date: "2024-11-08 18:11:21"
+  amount: 300.00
+  interest_paid: 30.00
+  principal_paid: 270.00
+  status: "pending"
