@@ -1,14 +1,14 @@
 one:
-  client: one  # Refers to the 'one' fixture in users.yml
-  loan: one    # Refers to the 'one' fixture in loans.yml
+  user: one
+  loan: one
   collection_id: 1
   payment_due_date: "2024-11-08 18:10:17"
   loan_start_date: "2024-11-08 18:10:17"
   final_payment_date: "2024-11-08 18:10:17"
 
 two:
-  client: two  # Refers to the 'two' fixture in users.yml
-  loan: two    # Refers to the 'two' fixture in loans.yml
+  user: two
+  loan: two
   collection_id: 1
   payment_due_date: "2024-11-08 18:10:17"
   loan_start_date: "2024-11-08 18:10:17"
