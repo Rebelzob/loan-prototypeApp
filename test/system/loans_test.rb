@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class LoansTest < ApplicationSystemTestCase
   setup do
+    @user = users(:one)
     @loan = loans(:one)
   end
 
@@ -11,8 +12,7 @@ class LoansTest < ApplicationSystemTestCase
   end
 
   test "should create loan" do
-    visit loans_url
-    click_on "New loan"
+    visit new_user_loan_url(@user)
 
     click_on "Create Loan"
 
