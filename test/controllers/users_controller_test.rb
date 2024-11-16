@@ -48,12 +48,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     } }
     assert_redirected_to user_url(@user)
     @user.reload
-    assert_equal "Updated name", @user.name
-    assert_equal "Updated lastname", @user.last_name
+    assert_equal "Updated Name", @user.name
+    assert_equal "Updated Lastname", @user.last_name
     assert_equal "Updated@example.com", @user.email
     assert_equal "0987654321", @user.phone
-    assert_equal "456 updated st", @user.address
-    assert_equal "Updated comments", @user.comments
+    assert_equal "456 Updated St", @user.address
+    assert_equal "Updated Comments", @user.comments
   end
 
   test "should destroy user" do
