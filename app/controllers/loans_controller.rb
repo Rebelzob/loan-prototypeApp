@@ -1,4 +1,5 @@
 class LoansController < ApplicationController
+  before_action :set_user
   before_action :set_loan, only: %i[ show edit update destroy ]
 
   # GET /loans or /loans.json
@@ -10,22 +11,22 @@ class LoansController < ApplicationController
   def show
   end
 
-  # GET /loans/new
+  # GET /users/:user_id/loans/new
   def new
-    @loan = Loan.new
+    @loan = @user.loans.new
   end
 
   # GET /loans/1/edit
   def edit
   end
 
-  # POST /loans or /loans.json
+  # POST /users/:user_id/loans
   def create
-    @loan = Loan.new(loan_params)
+    @loan = @user.loans.new(loan_params)
 
     respond_to do |format|
       if @loan.save
-        format.html { redirect_to @loan, notice: "Loan was successfully created." }
+        format.html { redirect_to @loan, notice: "Credito creado exitosamente!" }
         format.json { render :show, status: :created, location: @loan }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class LoansController < ApplicationController
   def update
     respond_to do |format|
       if @loan.update(loan_params)
-        format.html { redirect_to @loan, notice: "Loan was successfully updated." }
+        format.html { redirect_to @loan, notice: "Credito actualizado" }
         format.json { render :show, status: :ok, location: @loan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,15 +53,19 @@ class LoansController < ApplicationController
     @loan.destroy!
 
     respond_to do |format|
-      format.html { redirect_to loans_path, status: :see_other, notice: "Loan was successfully destroyed." }
+      format.html { redirect_to loans_path, status: :see_other, notice: "Credito eliminado exitosamente" }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_loan
-      @loan = Loan.find(params.expect(:id))
+      @loan = Loan.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

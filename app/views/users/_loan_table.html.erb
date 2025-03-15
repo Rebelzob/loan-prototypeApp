@@ -1,0 +1,35 @@
+<table class="min-w-full bg-white border border-gray-200">
+  <thead class="bg-gray-50">
+    <tr>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Amount</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Tasa de Interes</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Duracion</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Estado</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Monto Pagado</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Cuotas Pagadas</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Coutas Pendientes</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Capital Abonado</th>
+      <th class="px-4 py-2 text-xs font-medium tracking-wider text-left text-gray-500 uppercase border-b">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody class="bg-white divide-y divide-gray-200">
+    <% @user.loans.each do |loan| %>
+      <tr class="hover:bg-gray-100">
+        <td class="px-4 py-2 border-b"><%= loan.total_amount_to_pay %></td>
+        <td class="px-4 py-2 border-b"><%= loan.interest %>%</td>
+        <td class="px-4 py-2 border-b"><%= loan.duration %> months</td>
+        <td class="px-4 py-2 border-b"><%= loan.status.capitalize %></td>
+        <td class="px-4 py-2 border-b">$<%= loan.amount_paid %></td>
+        <td class="px-4 py-2 border-b">$<%= loan.paid_installments %></td>
+        <td class="px-4 py-2 border-b"><%= loan.pending_installments %></td>
+        <td class="px-4 py-2 border-b"><%= loan.principal%></td>
+        <td class="px-4 py-2 space-x-2 border-b">
+          <%= link_to "Show", loan_path(loan), class: "btn btn-sm btn-info text-blue-600 hover:text-blue-900" %>
+          <%= link_to "Edit", edit_loan_path(loan), class: "btn btn-sm btn-warning text-yellow-600 hover:text-yellow-900" %>
+          <%= link_to "Destroy", loan_path(loan), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger text-red-600 hover:text-red-900" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

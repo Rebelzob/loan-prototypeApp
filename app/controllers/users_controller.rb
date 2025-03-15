@@ -74,12 +74,10 @@ class UsersController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(
       :name,
@@ -92,6 +90,12 @@ class UsersController < ApplicationController
   end
 
   def transform_user_params(params)
-    params.transform_values { |v| v.is_a?(String) ? v.capitalize : v }
+    params.transform_values do |v|
+      if v.is_a?(String)
+        v.include?('@') ? v : v.split.map(&:capitalize).join(' ')
+      else
+        v
+      end
+    end
   end
 end

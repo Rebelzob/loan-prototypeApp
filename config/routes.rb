@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :users do
+    resources :loans, only: [:new, :create]
+  end
   resources :payments
   resources :date_payments
-  resources :loans
-  resources :users
+  resources :loans, except: [:new, :create]
 
   root "users#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
