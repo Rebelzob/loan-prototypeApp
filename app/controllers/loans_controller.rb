@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:new, :create]
   before_action :set_loan, only: %i[ show edit update destroy ]
 
   # GET /loans or /loans.json
@@ -61,7 +61,7 @@ class LoansController < ApplicationController
   private
   
     def set_user
-      @user = User.find(params[:user_id])
+      @user = User.find(params[:user_id]) if params[:user_id]
     end
 
     def set_loan
