@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users or /users.json
   def index
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         render partial: "users/user_card",
                collection: @users,
                as: :user,
-               formats: [ :html ]
+               formats: [:html]
       }
     end
   end
@@ -74,28 +74,28 @@ class UsersController < ApplicationController
   end
 
   private
-  def set_user
-    @user = User.find(params[:id])
-  end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def user_params
-    params.require(:user).permit(
-      :name,
-      :last_name,
-      :email,
-      :phone,
-      :address,
-      :comments
+    def user_params
+      params.require(:user).permit(
+        :name,
+        :last_name,
+        :email,
+        :phone,
+        :address,
+        :comments
       )
-  end
+    end
 
-  def transform_user_params(params)
-    params.transform_values do |v|
-      if v.is_a?(String)
-        v.include?('@') ? v : v.split.map(&:capitalize).join(' ')
-      else
-        v
+    def transform_user_params(params)
+      params.transform_values do |v|
+        if v.is_a?(String)
+          v.include?("@") ? v : v.split.map(&:capitalize).join(" ")
+        else
+          v
+        end
       end
     end
-  end
 end
