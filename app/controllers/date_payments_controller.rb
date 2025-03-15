@@ -1,5 +1,5 @@
 class DatePaymentsController < ApplicationController
-  before_action :set_date_payment, only: %i[ show edit update destroy ]
+  before_action :set_date_payment, only: %i[show edit update destroy]
 
   # GET /date_payments or /date_payments.json
   def index
@@ -58,14 +58,14 @@ class DatePaymentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_date_payment
-      @date_payment = DatePayment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_date_payment
+    @date_payment = DatePayment.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def date_payment_params
-      params.require(:date_payment).permit(
+  # Only allow a list of trusted parameters through.
+  def date_payment_params
+    params.require(:date_payment).permit(
       :user_id,
       :loan_id,
       :collection_id,
@@ -73,5 +73,5 @@ class DatePaymentsController < ApplicationController
       :loan_start_date,
       :final_payment_date
     )
-    end
+  end
 end

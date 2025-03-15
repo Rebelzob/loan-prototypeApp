@@ -20,3 +20,4 @@ puts "Creating 100 users..."
 end
 
 puts "\nCreated #{User.count} users!"
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
